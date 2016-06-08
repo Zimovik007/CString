@@ -168,7 +168,7 @@ int operator/=(const CString& Source, char* Pattern)
 //CString /= char
 int operator/=(const CString& Source, char Pattern)
 {
-	CString Temp = Pattern;
+	CString Temp(&Pattern);
 	return kmp(Source, Temp);
 }
 
