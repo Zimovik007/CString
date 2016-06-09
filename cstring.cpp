@@ -47,18 +47,18 @@ CString::CString()
 	Str_len = 0;
 }
 
-CString::CString(char Data)
+CString::CString(const char Data)
 {
 	Str_len = 1;
 	Str_data = new char [Str_len];
-	Str_data = &Data;
+	Str_data = strncpy(Str_data, &Data, Str_len);
 }
 
-CString::CString(char* Data)
+CString::CString(const char* Data)
 {
 	Str_len = strlen(Data);
 	Str_data = new char [Str_len];
-	Str_data = Data;
+	Str_data = strncpy(Str_data, Data, Str_len);
 }
 
 CString::CString(const CString& Data)
