@@ -2,10 +2,15 @@
 
 class CString{
 public:
+
 	CString();
 	CString(const char Data);
 	CString(const char* Data);
 	CString(const CString& Data);
+
+	CString& insert(int Pos, const char* Right);
+	CString& insert(int Pos, const CString& Right);
+
 	friend std::ostream& operator<<(std::ostream&, const CString&);
 	friend const CString operator+(const CString& Left, const CString& Right);
 	friend const CString operator+(const CString& Left, const char* Right);
@@ -16,13 +21,18 @@ public:
 	friend bool operator!=(const CString& Left, const CString& Right);
 	friend bool operator!=(const CString& Left, const char* Right);
 	friend bool operator!=(const CString& Left, const char Right);
-	friend int operator/=(const CString& Left, const CString& Right);
-	friend int operator/=(const CString& Left,  char* Right);
-	friend int operator/=(const CString& Left,  char Right);
+	friend int  operator/=(const CString& Left, const CString& Right);
+	friend int  operator/=(const CString& Left, const char* Right);
+	friend int  operator/=(const CString& Left, const char Right);
     
+	int sub_str(const CString& Right);
+	int sub_str(const char* Right);
+	int sub_str(const char Right);
+
 	char* get_str() const;
-	int str_len() const;
-	char get_char(int index) const;
+	int   str_len() const;
+	char  get_char(int index) const;
+	void  change_str_len(int cnt) const;
 	
     CString& operator=(const CString& Right)
 	{
@@ -49,8 +59,10 @@ public:
 	}
 private:
 	char* Str_data;
-	int Str_len;
+	mutable int Str_len;
+	int Buf_len;
 };
 
 
 int kmp(const CString& Source, const CString& Pattern);
+int max(int Num1, int Num2);
